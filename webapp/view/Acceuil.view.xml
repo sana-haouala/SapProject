@@ -3,6 +3,7 @@
 	<App id="idAppControl">
 		<pages>
 			<Page title="{i18n>title}">
+				<!-- heyy -->
 				<content></content>
 			</Page>
 		</pages>
