@@ -3,8 +3,8 @@
 	<App id="idAppControl">
 		<pages>
 			<Page title="{i18n>title}">
-				<!-- heyy -->
-				<content></content>
+				<content>
+				</content>
 			</Page>
 		</pages>
 	</App>
