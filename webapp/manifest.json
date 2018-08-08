@@ -74,7 +74,7 @@
 				"viewPath": "nextgen.nextgen.view",
 				"controlAggregation": "pages",
 				"controlId": "idAppControl",
-				"clearControlAggregation": false
+				"transition": "slide"
 			},
 			"routes": [
 				{
@@ -83,23 +83,29 @@
 					"target": [
 						"TargetAcceuil"
 					]
+				},
+				{
+					"name": "Requester",
+					"pattern": "Requester",
+					"target": [
+						"Requester"
+					]
 				}
 			],
 			"targets": {
-				"TargetAcceuil": {
+				"Requester": {
 					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
-					"viewName": "Acceuil",
+					"viewName": "Requester",
 					"routerClass": "sap.m.routing.Router",
 					"async": true,
 					"viewPath": "nextgen.nextgen.view",
 					"controlAggregation": "pages",
-					"controlId": "idAppControl"
+					"controlId": "idAppControl",
+					"transition": "slide"
 				},
-				"Requester": {
+				"App": {
 					"viewType": "XML",
-					"viewName": "Requester"
+					"viewName": "App"
 				}
 			}
 		}
