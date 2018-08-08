@@ -39,7 +39,7 @@
 
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "nextgen.nextgen.view.Acceuil",
+			"viewName": "nextgen.nextgen.view.Login",
 			"type": "XML"
 		},
 		"dependencies": {

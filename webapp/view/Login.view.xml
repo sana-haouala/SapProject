@@ -1,9 +1,10 @@
-<mvc:View controllerName="nextgen.nextgen.controller.Acceuil" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true" xmlns="sap.m">
+<mvc:View controllerName="nextgen.nextgen.controller.Login" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
 	<App id="idAppControl">
 		<pages>
 			<Page title="{i18n>title}">
 				<content>
+				    <Input width="100%" id="input1"/><Input width="100%" id="input0"/>
+				    <Button text="Button" width="100px" id="LoginButton"/>
 				</content>
 			</Page>
 		</pages>
