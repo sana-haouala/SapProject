@@ -1,10 +1,21 @@
-<mvc:View controllerName="nextgen.nextgen.controller.Login" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+<mvc:View 
+          xmlns:html="http://www.w3.org/1999/xhtml" 
+          xmlns:mvc="sap.ui.core.mvc" 
+          displayBlock="true" xmlns="sap.m"
+          controllerName="nextgen.nextgen.controller.Login">
 	<App id="idAppControl">
 		<pages>
-			<Page title="{i18n>title}">
+			<Page title="{i18n>Login}">
 				<content>
-				    <Input width="100%" id="input1"/><Input width="100%" id="input0"/>
-				    <Button text="Connect" width="100px" id="LoginButton" class="sapUiTinyMarginBottom" press="action" action:wiring="\{'press':\{'navigation':\{'routeName':'Requester'\}\}\}" xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"/>
+					<VBox width="100%" id="vbox0" alignItems="Center" backgroundDesign="Translucent" direction="Column" alignContent="Center">
+						<items>
+							<Input xmlns="sap.m" width="100%" id="input0"/>
+							<Input xmlns="sap.m" width="100%" id="input1"/>
+							<Button xmlns="sap.m" text="Connect" width="100px" id="LoginButton" class="sapUiTinyMarginBottom" press="action"
+								action:wiring="\{'press':\{'navigation':\{'routeName':'Requester'\}\}\}"
+								xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"/>
+						</items>
+					</VBox>
 				</content>
 			</Page>
 		</pages>

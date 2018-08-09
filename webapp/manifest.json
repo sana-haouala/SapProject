@@ -105,7 +105,13 @@
 				},
 				"App": {
 					"viewType": "XML",
-					"viewName": "App"
+					"viewName": "App",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "nextgen.nextgen.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"transition": "slide"
 				}
 			}
 		}
