@@ -90,6 +90,13 @@
 					"target": [
 						"Requester"
 					]
+				},
+				{
+					"name": "App",
+					"pattern": "App",
+					"target": [
+						"App"
+					]
 				}
 			],
 			"targets": {

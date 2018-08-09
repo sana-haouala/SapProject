@@ -1,22 +1,11 @@
-<mvc:View
-		height="100%"
-		xmlns:core="sap.ui.core"
-		xmlns:mvc="sap.ui.core.mvc"
-		xmlns="sap.m"
-		controllerName="nextgen.nextgen.controller.Requester"
-		xmlns:semantic="sap.m.semantic"
-		displayBlock="true">
+<mvc:View height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="nextgen.nextgen.controller.Requester" xmlns:semantic="sap.m.semantic" displayBlock="true">
 
 	<SplitContainer>
 		<masterPages>
-			<semantic:MasterPage title="Master Page Title">
+			<semantic:MasterPage title="Master Page Title" showNavButton="true" navButtonPress="onNavBack">
 				<semantic:sort>
-					<semantic:SortSelect change="onSemanticSelectChange"
-											 items="{
-							path: '/ProductCollectionStats/Filters',
-							sorter: { path: 'Name' }
-							}">
-						<core:Item key="{type}" text="{type}" />
+					<semantic:SortSelect change="onSemanticSelectChange" items="{        path: '/ProductCollectionStats/Filters',        sorter: { path: 'Name' }        }">
+						<core:Item key="{type}" text="{type}"/>
 					</semantic:SortSelect>
 				</semantic:sort>
 				<semantic:filter>
@@ -25,17 +14,19 @@
 				<semantic:group>
 					<semantic:GroupAction press="onSemanticButtonPress"/>
 				</semantic:group>
-				<semantic:addAction>
-					<semantic:AddAction press="onSemanticButtonPress"/>
-				</semantic:addAction>
-				<semantic:multiSelectAction>
-					<semantic:MultiSelectAction press="onMultiSelectPress"/>
-				</semantic:multiSelectAction>
+			<semantic:content>
+			    <VBox width="100%" direction="Column" id="vbox0" alignItems="Center" fitContainer="true" displayInline="true" alignContent="Start">
+			        <items>
+			            <Image width="140px" height="140px" id="image2"/>
+			            <Button text="Add Request" width="150px" id="button8"/>
+			            <Button text="Dashboard" width="150px" id="button9"/>
+			        </items>
+			    </VBox>
+			</semantic:content>
 			</semantic:MasterPage>
 		</masterPages>
 		<detailPages>
-			<semantic:DetailPage
-					title="Detail Page Title">
+			<semantic:DetailPage title="Detail Page Title">
 				<semantic:positiveAction>
 					<semantic:PositiveAction text="Positive" press="onSemanticButtonPress"/>
 				</semantic:positiveAction>
