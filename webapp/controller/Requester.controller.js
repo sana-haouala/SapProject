@@ -11,7 +11,11 @@ sap.ui.define([
 		} else {
 			sap.m.MessageToast.show("MultiSelect Unpressed");
 		}
-	}
+	},
+	   onNavBack: function()
+	   {
+	   	history.go(-1);
+	   }
     
 	
 
