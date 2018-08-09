@@ -15,7 +15,27 @@ sap.ui.define([
 	   onNavBack: function()
 	   {
 	   	history.go(-1);
-	   }
+	   },
+	   onAddReq : function () {
+			var oView = this.getView();
+			var oDialog = oView.byId("helloTest");
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment( "nextgen.nextgen.view.Add",this);
+				// connect dialog to view (models, lifecycle)
+				oView.addDependent(oDialog);
+				
+			}
+
+			oDialog.open();
+		},
+		dialogAfterclose: function(oEvent) {//function called after Dialog is closed
+        this._oDialog.destroy();//destroy only the content inside the Dialog
+		},
+		confirmOk: function(oEvent) {
+    this._oDialog.close();//Just close the Dialog, Dialog afterClose() will be called and destroy the Dialog content.
+}
     
 	
 

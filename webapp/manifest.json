@@ -90,13 +90,6 @@
 					"target": [
 						"Requester"
 					]
-				},
-				{
-					"name": "App",
-					"pattern": "App",
-					"target": [
-						"App"
-					]
 				}
 			],
 			"targets": {
@@ -110,15 +103,19 @@
 					"controlId": "idAppControl",
 					"transition": "slide"
 				},
-				"App": {
+				"AddReq": {
 					"viewType": "XML",
-					"viewName": "App",
+					"viewName": "AddReq",
 					"routerClass": "sap.m.routing.Router",
 					"async": true,
 					"viewPath": "nextgen.nextgen.view",
 					"controlAggregation": "pages",
 					"controlId": "idAppControl",
 					"transition": "slide"
+				},
+				"AddR": {
+					"viewType": "XML",
+					"viewName": "AddR"
 				}
 			}
 		}
