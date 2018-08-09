@@ -1,22 +1,11 @@
-<mvc:View
-		height="100%"
-		xmlns:core="sap.ui.core"
-		xmlns:mvc="sap.ui.core.mvc"
-		xmlns="sap.m"
-		controllerName="nextgen.nextgen.controller.Requester"
-		xmlns:semantic="sap.m.semantic"
-		displayBlock="true">
-
+<mvc:View height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="nextgen.nextgen.controller.Requester" xmlns:semantic="sap.m.semantic" displayBlock="true">
 	<SplitContainer>
 		<masterPages>
 			<semantic:MasterPage title="Master Page Title">
 				<semantic:sort>
-					<semantic:SortSelect change="onSemanticSelectChange"
-											 items="{
-							path: '/ProductCollectionStats/Filters',
-							sorter: { path: 'Name' }
-							}">
-						<core:Item key="{type}" text="{type}" />
+					<semantic:SortSelect change="onSemanticSelectChange" items="{ path: '/ProductCollectionStats/Filters', sorter: { path: 'Name' } }">
+						<core:Item key="{type}" text="{type}"/>
 					</semantic:SortSelect>
 				</semantic:sort>
 				<semantic:filter>
@@ -34,8 +23,7 @@
 			</semantic:MasterPage>
 		</masterPages>
 		<detailPages>
-			<semantic:DetailPage
-					title="Detail Page Title">
+			<semantic:DetailPage title="Detail Page Title">
 				<semantic:positiveAction>
 					<semantic:PositiveAction text="Positive" press="onSemanticButtonPress"/>
 				</semantic:positiveAction>
@@ -72,21 +60,37 @@
 				<semantic:pagingAction>
 					<PagingButton count="5" positionChange="onPositionChange"/>
 				</semantic:pagingAction>
-
 				<semantic:customFooterContent>
 					<OverflowToolbarButton icon="sap-icon://settings" text="Settings" press="onPress"/>
 					<OverflowToolbarButton icon="sap-icon://video" text="Video" press="onPress"/>
 				</semantic:customFooterContent>
-
 				<semantic:customShareMenuContent>
 					<Button text="CustomShareBtn1" icon="sap-icon://color-fill" press="onPress"/>
 					<Button text="CustomShareBtn2" icon="sap-icon://crop" press="onPress"/>
 				</semantic:customShareMenuContent>
-
+				<semantic:content>
+					<VBox width="100%" direction="Column" id="vbox3">
+						<items>
+							<IconTabBar id="bar1">
+								<items>
+									<IconTabFilter text="Issued request" count="25" showAll="true" id="allrequestsfilter">
+										<content>
+											<List noDataText="No data" id="list2">
+												<items>
+													<StandardListItem title="List Item 1" id="item4"/>
+													<StandardListItem title="List Item 2" id="item5"/>
+													<StandardListItem title="List Item 3" id="item6"/></items>
+											</List>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter text="Approved" count="10" icon="sap-icon://accept" iconColor="Positive" id="aprrovedfilter"/>
+									<IconTabFilter text="Pending" count="5" icon="sap-icon://pending" id="pendingfilter"/>
+									<IconTabFilter text="Refused" count="10" icon="sap-icon://decline" iconColor="Negative" id="refusedfilter"/></items>
+							</IconTabBar>
+						</items>
+					</VBox>
+				</semantic:content>
 			</semantic:DetailPage>
-
 		</detailPages>
-
 	</SplitContainer>
-
 </mvc:View>
