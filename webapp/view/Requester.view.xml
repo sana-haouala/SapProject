@@ -1,7 +1,8 @@
 <mvc:View height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="nextgen.nextgen.controller.Requester" xmlns:semantic="sap.m.semantic" displayBlock="true">
 
 
-	<SplitContainer>
+
+	<SplitContainer id="SplitContainer">
 		<masterPages>
 			<semantic:MasterPage title="Master Page Title" showNavButton="true" navButtonPress="onNavBack">
 				<semantic:sort>
@@ -22,13 +23,13 @@
 			        <items>
 			            <Image width="140px" height="140px" id="image2"/>
 			            <Button text="Add Request" width="150px" id="button8" press="onAddReq"/>
-			            <Button text="Dashboard" width="150px" id="button9"/>
+			            <Button text="Dashboard" width="150px" id="DashboardButton" press="onDashboardButtonPress"/>
 			        </items>
 			    </VBox>
 			</semantic:content>
 			</semantic:MasterPage>
 		</masterPages>
-		<detailPages>
+		<detailPages id="DetailPagesContainer">
 			<semantic:DetailPage title="Detail Page Title">
 				<semantic:positiveAction>
 					<semantic:PositiveAction text="Positive" press="onSemanticButtonPress"/>
@@ -95,6 +96,11 @@
 							</IconTabBar>
 						</items>
 					</VBox>
+				</semantic:content>
+			</semantic:DetailPage>
+			<semantic:DetailPage id="DashboadDetailpage" title="Your dashboard">
+				<semantic:content>
+					
 				</semantic:content>
 			</semantic:DetailPage>
 		</detailPages>

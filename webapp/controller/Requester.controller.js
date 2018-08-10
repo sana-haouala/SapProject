@@ -35,7 +35,13 @@ sap.ui.define([
 		},
 		confirmOk: function(oEvent) {
     this._oDialog.close();//Just close the Dialog, Dialog afterClose() will be called and destroy the Dialog content.
-}
+		},
+		
+		onDashboardButtonPress: function(oEvent) {
+			var SplitContainer = this.byId("SplitContainer");
+			SplitContainer.to(this.createId("DashboadDetailpage"))
+			
+		}
     
 	
 
