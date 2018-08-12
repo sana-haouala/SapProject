@@ -12,7 +12,7 @@
 							<Input xmlns="sap.m" width="100%" id="input0"/>
 							<Input xmlns="sap.m" width="100%" id="input1"/>
 							<Button xmlns="sap.m" text="Connect" width="100px" id="LoginButton" class="sapUiTinyMarginBottom" press="action"
-								action:wiring="\{'press':\{'navigation':\{'routeName':'Requester'\}\}\}"
+								action:wiring="\{'press':\{'navigation':\{'routeName':'Master'\}\}\}"
 								xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"/>
 						</items>
 					</VBox>

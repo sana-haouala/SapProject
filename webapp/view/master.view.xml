@@ -1,0 +1,104 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:vm="sap.ui.comp.variants" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:semantic="sap.m.semantic" xmlns:fb="sap.ui.comp.filterbar" xmlns:ui="sap.ca.ui" controllerName="nextgen.nextgen.controller.master" height="100%" displayBlock="true">
+	&gt;
+	<SplitContainer>
+		<masterPages>
+			<semantic:MasterPage title="Master Page " floatingFooter="true">
+				<semantic:subHeader>
+					<Bar id="headerBar">
+						<contentMiddle>
+							<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%" search="onSearch"/>
+						</contentMiddle>
+					</Bar>
+				</semantic:subHeader>
+				<semantic:content>
+					<List headerText="Menu" mode="SingleSelectMaster">
+						<items>
+							<StandardListItem title="Request List" type="Active" press="onSelectionChange" activeIcon="sap-icon://list" icon="sap-icon://time-entry-request"/>
+							<StandardListItem title="Notifications" type="Active" press="onSelectionChange" activeIcon="sap-icon://notification" icon="sap-icon://notification-2"/>
+							<StandardListItem title="Dashboard" type="Active" press="onSelectionChange" activeIcon="sap-icon://list" icon="sap-icon://bbyd-dashboard"/>
+							<StandardListItem title="Log out" type="Active" press="onSelectionChange" icon="sap-icon://log"/>
+						</items>
+					</List>
+				</semantic:content>
+			</semantic:MasterPage>
+		</masterPages>
+		<detailPages>
+			<semantic:DetailPage title="My Requests" floatingFooter="true">
+				<semantic:content>
+					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter icon="sap-icon://display" iconColor="Neutral" design="Horizontal">
+								<Text text="All requests"/>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://approvals" count="" iconColor="Positive" design="Horizontal">
+								<Text text="Approved requests"/>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://employee-rejections" iconColor="Negative" design="Horizontal">
+								<Text text="Rejected requests"/>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+					<fb:FilterBar reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
+						<fb:filterItems>
+							<fb:FilterItem name="A" label="Date">
+								<fb:control>
+									<Select id="slDate" forceSelection="true" change="onSelectChange" items="{ path: '/Date' }">
+										<core:Item key="{key}" text="{name}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="B" label="Category">
+								<fb:control>
+									<Select id="slCategory" change="onSelectChange" forceSelection="true" items="{ path: '/Categories' }">
+										<core:Item key="{key}" text="{name}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="C" label="Priorities">
+								<fb:control>
+									<Select id="slPriority" change="onSelectChange" forceSelection="true" items="{ path: '/Priorities' }">
+										<core:Item key="{key}" text="{name}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+						</fb:filterItems>
+					</fb:FilterBar>
+				</semantic:content>
+				<semantic:content>
+					<Table id="idProductsTable" inset="false" items="{ path: '/RequestCollection' }">
+						<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Date"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Category"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Priority"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle">
+								<cells>
+									<ObjectIdentifier title="{Date}" text="{ProductId}"/>
+									<Text text="{Category}"/>
+									<Text text="{Priority}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</semantic:content>
+				<semantic:customFooterContent>
+					<OverflowToolbarButton text="Add" icon="sap-icon://add" press="onPress"/>
+				</semantic:customFooterContent>
+				<semantic:customShareMenuContent>
+					<Button text="CustomShareBtn1" icon="sap-icon://color-fill" press="onPress"/>
+					<Button text="CustomShareBtn2" icon="sap-icon://crop" press="onPress"/>
+				</semantic:customShareMenuContent>
+				<semantic:customFooterContent>
+					<OverflowToolbarButton icon="sap-icon://settings" text="Settings" press="onPress"/>
+				</semantic:customFooterContent>
+			</semantic:DetailPage>
+		</detailPages>
+	</SplitContainer>
+</mvc:View>

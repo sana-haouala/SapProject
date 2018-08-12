@@ -5,14 +5,8 @@ sap.ui.define([
 	'sap/ui/model/json/JSONModel'
 ], function(jQuery, Controller, Filter, JSONModel) {
 	"use strict";
+	return Controller.extend("nextgen.nextgen.controller.listTest", {
 
-	return Controller.extend("nextgen.nextgen.controller.master", {
-
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf nextgen.nextgen.view.master
-		 */
 		onInit: function() {
 			this.oModel = new JSONModel();
 			this.oModel.loadData("model/Requests.json");
@@ -22,8 +16,9 @@ sap.ui.define([
 			this.oSelectName = this.getSelect("slDate");
 			this.oSelectCategory = this.getSelect("slCategory");
 			this.oSelectPriority = this.getSelect("slPriority");
-	 	this.oModel.setProperty("/Filter/text", "Filtered by None");
-		//	this.addSnappedLabel();
+
+			this.oModel.setProperty("/Filter/text", "Filtered by None");
+			this.addSnappedLabel();
 
 		},
 
@@ -45,71 +40,69 @@ sap.ui.define([
 
 			this.filterTable(aCurrentFilterValues);
 		},
-		filterTable: function(aCurrentFilterValues) {
+	filterTable: function (aCurrentFilterValues) {
 			this.getTableItems().filter(this.getFilters(aCurrentFilterValues));
 			this.updateFilterCriterias(this.getFilterCriteria(aCurrentFilterValues));
 		},
 
-		updateFilterCriterias: function(aFilterCriterias) {
+		updateFilterCriterias : function (aFilterCriterias) {
 			this.removeSnappedLabel(); /* because in case of label with an empty text, */
 			this.addSnappedLabel(); /* a space for the snapped content will be allocated and can lead to title misalignment */
 			this.oModel.setProperty("/Filter/text", this.getFormattedSummaryText(aFilterCriterias));
 		},
 
-		addSnappedLabel: function() {
+		addSnappedLabel : function() {
 			var oSnappedLabel = this.getSnappedLabel();
 			oSnappedLabel.attachBrowserEvent("click", this.onToggleHeader, this);
 			this.getPageTitle().addSnappedContent(oSnappedLabel);
 		},
 
-		removeSnappedLabel: function() {
+		removeSnappedLabel : function() {
 			this.getPageTitle().destroySnappedContent();
 		},
 
-		getFilters: function(aCurrentFilterValues) {
+		getFilters: function (aCurrentFilterValues) {
 			this.aFilters = [];
 
-			this.aFilters = this.aKeys.map(function(sCriteria, i) {
+			this.aFilters = this.aKeys.map(function (sCriteria, i) {
 				return new sap.ui.model.Filter(sCriteria, sap.ui.model.FilterOperator.Contains, aCurrentFilterValues[i]);
 			});
 
 			return this.aFilters;
 		},
-		getFilterCriteria: function(aCurrentFilterValues) {
-			return this.aKeys.filter(function(el, i) {
-				if (aCurrentFilterValues[i] !== "") return el;
+		getFilterCriteria : function (aCurrentFilterValues){
+			return this.aKeys.filter(function (el, i) {
+				if (aCurrentFilterValues[i] !== "") return  el;
 			});
 		},
-		getFormattedSummaryText: function(aFilterCriterias) {
-			if (aFilterCriterias.length > 0) {
+		getFormattedSummaryText : function (aFilterCriterias) {
+			if (aFilterCriterias.length > 0) {	
 				return "Filtered By (" + aFilterCriterias.length + "): " + aFilterCriterias.join(", ");
 			} else {
 				return "Filtered by None";
 			}
 		},
 
-		getTable: function() {
+		getTable : function () {
 			return this.getView().byId("idProductsTable");
 		},
-		getTableItems: function() {
+		getTableItems : function () {
 			return this.getTable().getBinding("items");
 		},
-		getSelect: function(sId) {
+		getSelect : function (sId) {
 			return this.getView().byId(sId);
 		},
-		getSelectedItemText: function(oSelect) {
+		getSelectedItemText : function (oSelect) {
 			return oSelect.getSelectedItem() ? oSelect.getSelectedItem().getKey() : "";
 		},
-		getPage: function() {
+		getPage : function() {
 			return this.getView().byId("dynamicPageId");
 		},
 		getPageTitle: function() {
 			return this.getPage().getTitle();
 		},
-		getSnappedLabel: function() {
-			return new sap.m.Label({
-				text: "{/Filter/text}"
-			});
+		getSnappedLabel : function () {
+			return new sap.m.Label({text: "{/Filter/text}"});
 		}
 
 	});

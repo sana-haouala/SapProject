@@ -29,10 +29,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize"
-		]
+		"supportedThemes": ["sap_hcb", "sap_belize"]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -60,11 +57,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -76,22 +71,27 @@
 				"controlId": "idAppControl",
 				"transition": "slide"
 			},
-			"routes": [
-				{
-					"name": "RouteAcceuil",
-					"pattern": "RouteAcceuil",
-					"target": [
-						"TargetAcceuil"
-					]
-				},
-				{
-					"name": "Requester",
-					"pattern": "Requester",
-					"target": [
-						"Requester"
-					]
-				}
-			],
+			"routes": [{
+				"name": "RouteAcceuil",
+				"pattern": "RouteAcceuil",
+				"target": ["TargetAcceuil"]
+			}, {
+				"name": "Requester",
+				"pattern": "Requester",
+				"target": ["Requester"]
+			}, {
+				"name": "ListTest",
+				"pattern": "ListTest",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["ListTest"]
+			}, {
+				"name": "Master",
+				"pattern": "Master",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Master"]
+			}],
 			"targets": {
 				"Requester": {
 					"viewType": "XML",
@@ -116,6 +116,24 @@
 				"AddR": {
 					"viewType": "XML",
 					"viewName": "AddR"
+				},
+				"ListTest": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "listTest",
+					"viewPath": "nextgen.nextgen.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl"
+				},
+				"Master": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "master",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"viewPath": "nextgen.nextgen.view"
 				}
 			}
 		}
