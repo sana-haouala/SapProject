@@ -1,5 +1,13 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:vm="sap.ui.comp.variants"
-	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:semantic="sap.m.semantic" xmlns:fb="sap.ui.comp.filterbar" xmlns:ui="sap.ca.ui"
+<mvc:View xmlns:core="sap.ui.core" 
+          xmlns:mvc="sap.ui.core.mvc"
+          xmlns="sap.m"
+          xmlns:layout="sap.ui.layout"
+          xmlns:vm="sap.ui.comp.variants"
+	      xmlns:html="http://www.w3.org/1999/xhtml"
+	      xmlns:semantic="sap.m.semantic"
+	      xmlns:fb="sap.ui.comp.filterbar" 
+	      xmlns:ui="sap.ca.ui"
+	      xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 	controllerName="nextgen.nextgen.controller.master" height="100%" displayBlock="true">
 	&gt;
 	<SplitContainer id="SplitContainer">
@@ -14,13 +22,13 @@
 					</Bar>
 				</semantic:subHeader>
 				<semantic:content>
-					<List headerText="Menu" mode="SingleSelectMaster" itemPress="onDashboardButtonPress">
+					<List headerText="Menu" mode="SingleSelectMaster" itemPress="onListItemPress">
 						<items>
-							<StandardListItem title="Request List" type="Active" press="onSelectionChange" activeIcon="sap-icon://list"
+							<StandardListItem title="Request List" type="Active" custom:to="AddReq"  activeIcon="sap-icon://list"
 								icon="sap-icon://time-entry-request"/>
-							<StandardListItem title="Notifications" type="Active" press="onSelectionChange" activeIcon="sap-icon://notification"
+							<StandardListItem title="Notifications" type="Active"  custom:to="Notif" press="onSelectionChange" activeIcon="sap-icon://notification"
 								icon="sap-icon://notification-2"/>
-							<StandardListItem title="Dashboard" type="Active" press="onSelectionChange" activeIcon="sap-icon://list" icon="sap-icon://bbyd-dashboard"/>
+							<StandardListItem title="Dashboard" type="Active" custom:to="DashboardDetailpage" press="onSelectionChange" activeIcon="sap-icon://list" icon="sap-icon://bbyd-dashboard"/>
 							<StandardListItem title="Log out" type="Active" press="onSelectionChange" icon="sap-icon://log"/>
 						</items>
 					</List>
@@ -103,6 +111,12 @@
 				<semantic:customFooterContent>
 					<OverflowToolbarButton icon="sap-icon://settings" text="Settings" press="onPress"/>
 				</semantic:customFooterContent>
+			</semantic:DetailPage>
+			<semantic:DetailPage id="AddReq" title="Add Request">
+				<semantic:content></semantic:content>
+			</semantic:DetailPage>
+			<semantic:DetailPage id="Notif" title="Notifications">
+				<semantic:content></semantic:content>
 			</semantic:DetailPage>
 			<semantic:DetailPage id="DashboardDetailpage" title="Your dashboard">
 				<semantic:content></semantic:content>

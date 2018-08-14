@@ -111,12 +111,26 @@ sap.ui.define([
 				text: "{/Filter/text}"
 			});
 		},
+			getSplitAppObj: function() {
+			var result = this.byId("SplitContainer");
+			if (!result) {
+				jQuery.sap.log.info("SplitApp object can't be found");
+			}
+			return result;
+		},
+	
 		
-		onDashboardButtonPress: function(oEvent) {
+	/*	onDashboardButtonPress: function(oEvent) {
 			var SplitContainer = this.byId("SplitContainer");
 			SplitContainer.to(this.createId("DashboardDetailpage"));
 			
+		}*/
+		onListItemPress : function(oEvent) {
+			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
+
+			this.getSplitAppObj().toDetail(this.createId(sToPageId));
 		}
+	
 		
 
 	});
