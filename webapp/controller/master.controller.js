@@ -110,7 +110,14 @@ sap.ui.define([
 			return new sap.m.Label({
 				text: "{/Filter/text}"
 			});
+		},
+		
+		onDashboardButtonPress: function(oEvent) {
+			var SplitContainer = this.byId("SplitContainer");
+			SplitContainer.to(this.createId("DashboardDetailpage"));
+			
 		}
+		
 
 	});
 

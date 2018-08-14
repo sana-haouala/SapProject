@@ -39,7 +39,7 @@ sap.ui.define([
 		
 		onDashboardButtonPress: function(oEvent) {
 			var SplitContainer = this.byId("SplitContainer");
-			SplitContainer.to(this.createId("DashboadDetailpage"))
+			SplitContainer.to(this.createId("DashboadDetailpage"));
 			
 		}
     
