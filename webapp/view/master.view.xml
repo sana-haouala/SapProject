@@ -1,33 +1,20 @@
-<mvc:View xmlns:core="sap.ui.core" 
-          xmlns:mvc="sap.ui.core.mvc"
-          xmlns="sap.m"
-          xmlns:layout="sap.ui.layout"
-          xmlns:vm="sap.ui.comp.variants"
-	      xmlns:html="http://www.w3.org/1999/xhtml"
-	      xmlns:semantic="sap.m.semantic"
-	      xmlns:fb="sap.ui.comp.filterbar" 
-	      xmlns:ui="sap.ca.ui"
-	      xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-	controllerName="nextgen.nextgen.controller.master" height="100%" displayBlock="true">
-	&gt;
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:vm="sap.ui.comp.variants" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:semantic="sap.m.semantic" xmlns:fb="sap.ui.comp.filterbar" xmlns:ui="sap.ca.ui" xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartMultiInput="sap.ui.comp.smartmultiinput" xmlns:f="sap.ui.layout.form" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="nextgen.nextgen.controller.master" height="100%" displayBlock="true">
 	<SplitContainer id="SplitContainer">
 		<masterPages>
 			<semantic:MasterPage title="Master Page " floatingFooter="true">
 				<semantic:subHeader>
 					<Bar id="headerBar">
 						<contentMiddle>
-							<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%"
-								search="onSearch"/>
+							<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%" search="onSearch"/>
 						</contentMiddle>
 					</Bar>
 				</semantic:subHeader>
 				<semantic:content>
 					<List headerText="Menu" mode="SingleSelectMaster" itemPress="onListItemPress">
 						<items>
-							<StandardListItem title="Request List" type="Active" custom:to="AddReq"  activeIcon="sap-icon://list"
-								icon="sap-icon://time-entry-request"/>
-							<StandardListItem title="Notifications" type="Active"  custom:to="Notif" press="onSelectionChange" activeIcon="sap-icon://notification"
-								icon="sap-icon://notification-2"/>
+							<StandardListItem title="Add Request" type="Active" custom:to="AddReq" activeIcon="sap-icon://list" icon="sap-icon://add"/>
+							<StandardListItem title="Request List" type="Active" custom:to="request" activeIcon="sap-icon://list" icon="sap-icon://time-entry-request"/>
+							<StandardListItem title="Notifications" type="Active" custom:to="Notif" press="onSelectionChange" activeIcon="sap-icon://notification" icon="sap-icon://notification-2"/>
 							<StandardListItem title="Dashboard" type="Active" custom:to="DashboardDetailpage" press="onSelectionChange" activeIcon="sap-icon://list" icon="sap-icon://bbyd-dashboard"/>
 							<StandardListItem title="Log out" type="Active" press="onSelectionChange" icon="sap-icon://log"/>
 						</items>
@@ -36,7 +23,7 @@
 			</semantic:MasterPage>
 		</masterPages>
 		<detailPages id="DetailPagesContainer">
-			<semantic:DetailPage title="My Requests" floatingFooter="true">
+			<semantic:DetailPage id="request" title="My Requests" floatingFooter="true">
 				<semantic:content>
 					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
 						<items>
@@ -113,13 +100,158 @@
 				</semantic:customFooterContent>
 			</semantic:DetailPage>
 			<semantic:DetailPage id="AddReq" title="Add Request">
-				<semantic:content></semantic:content>
+				<semantic:content>
+					
+				<!--	<List headerText="Input">
+						<InputListItem label="Category">
+						<content>
+						    <ActionSelect selectedKey="item1" id="select1">
+						        <items>
+						            <core:ListItem text="List Item 1" key="item1" id="item28"/>
+						            <core:ListItem text="List Item 2" key="item2" id="item29"/>
+						            <core:ListItem text="List Item 3" key="item3" id="item30"/></items>
+						    </ActionSelect>
+						</content>
+						</InputListItem>
+						<InputListItem label="Articles">
+						<content>
+						    <ActionSelect selectedKey="item1" id="select2">
+						        <items>
+						            <core:ListItem text="List Item 1" key="item1" id="item31"/>
+						            <core:ListItem text="List Item 2" key="item2" id="item32"/>
+						            <core:ListItem text="List Item 3" key="item3" id="item33"/></items>
+						    </ActionSelect>
+						</content>
+						</InputListItem>
+						<InputListItem label="Quantity">
+						<content>
+						    <Input width="100%" id="input2"/>
+						</content>
+						</InputListItem>
+						<InputListItem label="Deadline">
+							<Slider min="0" max="10" value="7" width="200px"/>
+						</InputListItem>
+					</List>
+					-->
+					<f:Form editable="true" id="form1">
+					
+					    <f:formContainers>
+					
+					        <f:FormContainer title="Add Request" id="container0">
+					
+					            <f:formElements>
+					
+					                <f:FormElement id="element0">
+					
+					                <f:fields>
+					
+					                    <List xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout" xmlns:vm="sap.ui.comp.variants" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:semantic="sap.m.semantic" xmlns:fb="sap.ui.comp.filterbar" xmlns:ui="sap.ca.ui" xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartMultiInput="sap.ui.comp.smartmultiinput" xmlns:f="sap.ui.layout.form" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" headerText="Input" id="list15">
+					
+					                        <InputListItem label="Category">
+					
+					                            <content>
+					
+					                                <ActionSelect selectedKey="item1" id="select1_copy">
+					
+					                                    <items>
+					
+					                                        <core:ListItem xmlns:core="sap.ui.core" text="List Item 1" key="item1" id="item28_copy"/>
+					
+					                                        <core:ListItem xmlns:core="sap.ui.core" text="List Item 2" key="item2" id="item29_copy"/>
+					
+					                                        <core:ListItem xmlns:core="sap.ui.core" text="List Item 3" key="item3" id="item30_copy"/>
+					
+					                                        </items>
+					
+					                                    
+					
+					                                </ActionSelect>
+					
+					                                
+					
+					                            </content>
+					
+					                            
+					
+					                        </InputListItem>
+					
+					                        <InputListItem label="Articles">
+					
+					                            <content>
+					
+					                                <ActionSelect selectedKey="item1" id="select2_copy">
+					
+					                                    <items>
+					
+					                                        <core:ListItem xmlns:core="sap.ui.core" text="List Item 1" key="item1" id="item31_copy"/>
+					
+					                                        <core:ListItem xmlns:core="sap.ui.core" text="List Item 2" key="item2" id="item32_copy"/>
+					
+					                                        <core:ListItem xmlns:core="sap.ui.core" text="List Item 3" key="item3" id="item33_copy"/>
+					
+					                                        </items>
+					
+					                                    
+					
+					                                </ActionSelect>
+					
+					                                
+					
+					                            </content>
+					
+					                            
+					
+					                        </InputListItem>
+					
+					                        <InputListItem label="Quantity">
+					
+					                            <content>
+					
+					                                <Input width="100%" id="input2_copy"/>
+					
+					                                
+					
+					                            </content>
+					
+					                            
+					
+					                        </InputListItem>
+					
+					                        <InputListItem label="Deadline">
+					
+					                            <Slider min="0" max="10" value="7" width="200px"/>
+					
+					                            
+					
+					                        </InputListItem>
+					
+					                        </List>
+					                  
+					                  
+					           
+					                </f:fields>
+
+					                </f:FormElement>
+
+					            </f:formElements>
+					        </f:FormContainer>
+					
+					    </f:formContainers>
+					
+					    <f:layout>
+					
+					        <f:ResponsiveGridLayout id="layout8"/>
+					
+					    </f:layout></f:Form>
+					    <Button text="Submit" width="100px" id="button4" activeIcon="sap-icon://add-activity-2"/>
+				
+				</semantic:content>
 			</semantic:DetailPage>
 			<semantic:DetailPage id="Notif" title="Notifications">
-				<semantic:content></semantic:content>
+				<semantic:content/>
 			</semantic:DetailPage>
 			<semantic:DetailPage id="DashboardDetailpage" title="Your dashboard">
-				<semantic:content></semantic:content>
+				<semantic:content/>
 			</semantic:DetailPage>
 		</detailPages>
 	</SplitContainer>

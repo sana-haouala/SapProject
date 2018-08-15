@@ -8,7 +8,19 @@ sap.ui.define([
 	return UIComponent.extend("nextgen.nextgen.Component", {
 
 		metadata: {
-			manifest: "json"
+			manifest: "json",
+			rootView: {
+			"viewName": "nextgen.webapp.view.master",
+			"type": "XML",
+			"async": true
+			}
+		},
+		  config: {
+			sample: {
+				stretch: true,
+				files: ["master.view.xml", "master.controller.js", "../mockserver/metadata.xml",
+					"../mockserver/Products.json", "../mockserver/Categories.json", "../mockserver/CategoriesVH.json"]
+			}
 		},
 
 		/**
@@ -23,5 +35,6 @@ sap.ui.define([
             // create the views based on the url/hash
             this.getRouter().initialize();
         }
+      
 	});
 });
