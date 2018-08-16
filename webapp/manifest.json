@@ -10,8 +10,18 @@
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"sourceTemplate": {
-			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.40.12"
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"test.xsodata": {
+				"uri": "/nextgenService/HelloWorld/test.xsodata/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
 		}
 	},
 	"sap.ui": {
@@ -29,7 +39,10 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_hcb", "sap_belize"]
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -54,12 +67,25 @@
 				"settings": {
 					"bundleName": "nextgen.nextgen.i18n.i18n"
 				}
+			},
+			"Persons": {
+				"uri": "/nextgenService/HelloWorld/test.xsodata/",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "test.xsodata",
+				"preload": true
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -71,27 +97,40 @@
 				"controlId": "idAppControl",
 				"transition": "slide"
 			},
-			"routes": [{
-				"name": "RouteAcceuil",
-				"pattern": "RouteAcceuil",
-				"target": ["TargetAcceuil"]
-			}, {
-				"name": "Requester",
-				"pattern": "Requester",
-				"target": ["Requester"]
-			}, {
-				"name": "ListTest",
-				"pattern": "ListTest",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["ListTest"]
-			}, {
-				"name": "Master",
-				"pattern": "Master",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["Master"]
-			}],
+			"routes": [
+				{
+					"name": "RouteAcceuil",
+					"pattern": "RouteAcceuil",
+					"target": [
+						"TargetAcceuil"
+					]
+				},
+				{
+					"name": "Requester",
+					"pattern": "Requester",
+					"target": [
+						"Requester"
+					]
+				},
+				{
+					"name": "ListTest",
+					"pattern": "ListTest",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"ListTest"
+					]
+				},
+				{
+					"name": "Master",
+					"pattern": "Master",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Master"
+					]
+				}
+			],
 			"targets": {
 				"Requester": {
 					"viewType": "XML",
