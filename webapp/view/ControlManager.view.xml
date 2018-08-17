@@ -94,8 +94,8 @@
 									<Text text="{Category}"/>
 									<Text text="{Priority}"/>
 									<VBox>
-										<Button text="Accept" width="100px" id="button4" type="Accept" press="onMessageSuccessDialogPress" class="sapUiSmallMarginBottom"/>
-										<Button text="Reject" width="100px" id="button5" type="Reject" press="onMessageWarningDialogPress" class="sapUiSmallMarginBottom"/>
+										<Button text="Accept" width="100px" id="AcceptBt" type="Accept" press="onMessageSuccessDialogPress" class="sapUiSmallMarginBottom"/>
+										<Button text="Reject" width="100px" id="RejectBt" type="Reject" press="onMessageWarningDialogPress" class="sapUiSmallMarginBottom"/>
 									</VBox>
 								</cells>
 							</ColumnListItem>

@@ -154,7 +154,6 @@ sap.ui.define([
 				beginButton: new Button({
 					text: 'Submit',
 					press: function() {
-						MessageToast.show('Submit pressed!');
 						dialog.close();
 					}
 				}),

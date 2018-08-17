@@ -91,6 +91,13 @@
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["Master"]
+			},
+			{
+				"name": "ControlManager",
+				"pattern": "ControlManager",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["ControlManager"]
 			}],
 			"targets": {
 				"Requester": {
@@ -131,6 +138,15 @@
 					"transition": "slide",
 					"clearAggregation": true,
 					"viewName": "master",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"viewPath": "nextgen.nextgen.view"
+				},
+					"ControlManager": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "ControlManager",
 					"controlAggregation": "pages",
 					"controlId": "idAppControl",
 					"viewPath": "nextgen.nextgen.view"
