@@ -97,7 +97,7 @@
 				"controlId": "idAppControl",
 				"transition": "slide"
 			},
-<<<<<<< HEAD
+
 			"routes": [{
 				"name": "RouteAcceuil",
 				"pattern": "RouteAcceuil",
@@ -126,42 +126,8 @@
 				"greedy": false,
 				"target": ["ControlManager"]
 			}],
-=======
-			"routes": [
-				{
-					"name": "RouteAcceuil",
-					"pattern": "RouteAcceuil",
-					"target": [
-						"TargetAcceuil"
-					]
-				},
-				{
-					"name": "Requester",
-					"pattern": "Requester",
-					"target": [
-						"Requester"
-					]
-				},
-				{
-					"name": "ListTest",
-					"pattern": "ListTest",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"ListTest"
-					]
-				},
-				{
-					"name": "Master",
-					"pattern": "Master",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"Master"
-					]
-				}
-			],
->>>>>>> branch 'master' of https://bitbucket.org/NabilHouidi/nextgen.git
+
+
 			"targets": {
 				"Requester": {
 					"viewType": "XML",
