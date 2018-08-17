@@ -1,0 +1,10 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema Namespace="HelloWorld.test" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="PERSONSType">
+				<Key><PropertyRef Name="PERSONID"/></Key><Property Name="PERSONID" Type="Edm.Int32" Nullable="false"/><Property Name="LASTNAME" Type="Edm.String" MaxLength="255"/><Property Name="FIRSTNAME" Type="Edm.String" MaxLength="255"/><Property Name="ADDRESS" Type="Edm.String" MaxLength="255"/><Property Name="CITY" Type="Edm.String" MaxLength="255"/></EntityType>
+			<EntityContainer Name="test" m:IsDefaultEntityContainer="true"><EntitySet Name="PERSONS" EntityType="HelloWorld.test.PERSONSType"/></EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

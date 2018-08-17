@@ -18,6 +18,14 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/nextgenService",
+      "target": {
+        "type": "destination",
+        "name": "nextgenService"
+      },
+      "description": "nextgenService"
     }
   ],
   "sendWelcomeFileRedirect": true
