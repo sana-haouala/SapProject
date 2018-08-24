@@ -39,10 +39,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize"
-		]
+		"supportedThemes": ["sap_hcb", "sap_belize"]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -81,11 +78,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -97,7 +92,6 @@
 				"controlId": "idAppControl",
 				"transition": "slide"
 			},
-
 			"routes": [{
 				"name": "RouteAcceuil",
 				"pattern": "RouteAcceuil",
@@ -118,16 +112,19 @@
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["Master"]
-			},
-			{
+			}, {
 				"name": "ControlManager",
 				"pattern": "ControlManager",
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["ControlManager"]
+			}, {
+				"name": "MasterSupp",
+				"pattern": "MasterSupp",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["MasterSupp"]
 			}],
-
-
 			"targets": {
 				"Requester": {
 					"viewType": "XML",
@@ -171,7 +168,7 @@
 					"controlId": "idAppControl",
 					"viewPath": "nextgen.nextgen.view"
 				},
-					"ControlManager": {
+				"ControlManager": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearAggregation": true,
@@ -179,6 +176,14 @@
 					"controlAggregation": "pages",
 					"controlId": "idAppControl",
 					"viewPath": "nextgen.nextgen.view"
+				},
+				"MasterSupp": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewPath": "nextgen.nextgen.view",
+					"controlId": "idAppControl",
+					"viewName": "MasterSupp"
 				}
 			}
 		}

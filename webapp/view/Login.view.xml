@@ -1,26 +1,23 @@
-
-<mvc:View xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc"
-          displayBlock="true"
-          xmlns="sap.m"
-          controllerName="nextgen.nextgen.controller.Login">
-
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	controllerName="nextgen.nextgen.controller.Login">
 	<App id="idAppControl">
 		<pages>
 			<Page title="{i18n>Login}" backgroundDesign="List">
-				<content><VBox width="100%" id="vbox0" alignItems="Center" backgroundDesign="Translucent" alignContent="Center" direction="Column" displayInline="true" justifyContent="SpaceAround">
+				<content>
+					<VBox width="100%" id="vbox0" alignItems="Center" backgroundDesign="Translucent" alignContent="Center" direction="Column"
+						displayInline="true" justifyContent="SpaceAround">
 						<items>
 							<Input xmlns="sap.m" width="100%" id="input0"/>
-
 							<Input xmlns="sap.m" width="100%" id="input1"/>
-							<Button xmlns="sap.m" text="Connect" width="100px" id="LoginButton" class="sapUiTinyMarginBottom" press="action"
+							<Button xmlns="sap.m" text="Connect" width="200px" id="LoginButton" class="sapUiTinyMarginBottom" press="action"
 								action:wiring="\{'press':\{'navigation':\{'routeName':'Master'\}\}\}"
 								xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"/>
-							<Button xmlns="sap.m" text="Connect as controlMang" width="100px" id="Login2Button" class="sapUiTinyMarginBottom" press="action"
+							<Button xmlns="sap.m" text="Connect as controlMang" width="200px" id="Login2Button" class="sapUiTinyMarginBottom" press="action"
 								action:wiring=" \{'press':\{'navigation':\{'routeName':'ControlManager'\}\}\} "
-						     	xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"/>
-
-
+								xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"/>
+							<Button xmlns="sap.m" text="Connect as SuppManager" width="200px" id="Login3" class="sapUiTinyMarginBottom" press="action"
+								action:wiring=" \{'press':\{'navigation':\{'routeName':'MasterSupp'\}\}\} "
+								xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"/>
 						</items>
 					</VBox>
 				</content>
