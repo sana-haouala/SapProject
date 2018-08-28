@@ -206,11 +206,33 @@ sap.ui.define([
 		
 		onSubmit: function () {
 			this.getView().getModel().submitChanges();
-		}
-
-	
+		},
 		
-
+		
+		/********************************* Request type filter section *********************************/
+		OnFilterChanged: function(oEvent){
+			var key = oEvent.getParameters().key;
+			if(key == "approved" || key == "rejected" || key == "pending"){
+				var filterCriteria = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.EQ, key);
+				this.getTableItems().filter(filterCriteria);
+			}else if(key == "all"){
+				this.getTableItems().filter(null);
+			}else
+				console.log("Attempted to filter tables using unknown key");
+			
+		},
+	
+	
+		/********************************* Notifications popover section *********************************/
+		
+		showNotificationsPopover: function(oEvent){
+			if(!this._oPopover){
+				this._oPopover = sap.ui.xmlfragment("NotificationsPopover", "nextgen.Notifications.Notifications", this);
+				this.getView().addDependent(this._oPopover);
+			}
+			this._oPopover.openBy(oEvent.getSource());
+		}
+		
 	});
 
 });
