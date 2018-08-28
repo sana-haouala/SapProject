@@ -32,19 +32,33 @@
 		<detailPages id="DetailPagesContainer">
 			<semantic:DetailPage id="request" title="My Requests" floatingFooter="true">
 				<semantic:content>
-					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+					
+					
+					<!-- data filter --> 
+					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" select="OnFilterChanged">
 						<items>
-							<IconTabFilter icon="sap-icon://display" iconColor="Neutral" design="Horizontal">
+							<IconTabFilter key="all" icon="sap-icon://display" iconColor="Neutral" design="Horizontal">
 								<Text text="All requests"/>
 							</IconTabFilter>
-							<IconTabFilter icon="sap-icon://approvals" count="" iconColor="Positive" design="Horizontal">
+							<IconTabFilter key="approved" icon="sap-icon://approvals" count="" iconColor="Positive" design="Horizontal">
 								<Text text="Approved requests"/>
 							</IconTabFilter>
-							<IconTabFilter icon="sap-icon://employee-rejections" iconColor="Negative" design="Horizontal">
+							<IconTabFilter key="rejected" icon="sap-icon://employee-rejections" iconColor="Negative" design="Horizontal">
 								<Text text="Rejected requests"/>
 							</IconTabFilter>
+
+							<IconTabFilter key="pending" icon="sap-icon://fob-watch" iconColor="Neutral" design="Horizontal">
+								<Text text="Pending requests"/>
+							</IconTabFilter>
+							
+							<!-- Old notifications
+							<IconTabSeparator id="tabFilterSeperator" visible="true" iconDensityAware="true"/>
+							<IconTabFilter icon="sap-icon://bell" iconColor="Neutral" design="Horizontal" press="showNotificationsPopover"></IconTabFilter>
+							-->
 						</items>
 					</IconTabBar>
+					<!-- data filter --> 
+					
 					<fb:FilterBar reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
 						<fb:filterItems>
 							<fb:FilterItem name="A" label="Date">
@@ -83,6 +97,9 @@
 							<Column minScreenWidth="Tablet" demandPopin="true">
 								<Text text="Priority"/>
 							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+								<Text text="Status"/>
+							</Column>
 						</columns>
 						<items>
 							<ColumnListItem vAlign="Middle">
@@ -90,6 +107,7 @@
 									<ObjectIdentifier title="{Date}" text="{ProductId}"/>
 									<Text text="{Category}"/>
 									<Text text="{Priority}"/>
+									<Text text="{Status}"/>
 								</cells>
 							</ColumnListItem>
 						</items>
