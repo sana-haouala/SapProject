@@ -95,8 +95,8 @@
 									<ObjectIdentifier title="{Date}" text="{ProductId}"/>
 									<Text text="{Category}"/>
 									<Text text="{Priority}"/>
-									<Button title="Suppliers" type="Active" custom:to="Notif" press="onSelectionChange" activeIcon="sap-icon://notification"
-								icon="sap-icon://supplier"/>
+									<Button title="Suppliers" type="Active" custom:to="Notif" press="onSelectButtonChange" activeIcon="sap-icon://notification"
+								icon="sap-icon://supplier" class="sapUiSmallMarginBottom"/>
 								</cells>
 							</ColumnListItem>
 						</items>

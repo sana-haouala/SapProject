@@ -2,8 +2,12 @@ sap.ui.define([
 	'jquery.sap.global',
 	'sap/ui/core/mvc/Controller',
 	'sap/ui/model/Filter',
-	'sap/ui/model/json/JSONModel'
-], function(jQuery, Controller, Filter, JSONModel) {
+	'sap/ui/model/json/JSONModel',
+	'sap/m/Dialog',
+	'sap/m/List',
+	'sap/m/Button',
+	'sap/m/StandardListItem'
+], function(jQuery, Controller, Filter, JSONModel, Dialog, List, Button, StandardListItem) {
 	"use strict";
 
 	return Controller.extend("nextgen.nextgen.controller.MasterSupp", {
@@ -25,7 +29,7 @@ sap.ui.define([
 			},*/
 		//supplier
 		onInit: function() {
-				this.oModel = new JSONModel();
+			this.oModel = new JSONModel(jQuery.sap.getModulePath("model", "/Requests.json"));
 			this.oModel.loadData("model/Requests.json");
 			this.getView().setModel(this.oModel);
 
@@ -33,15 +37,15 @@ sap.ui.define([
 			this.oSelectName = this.getSelect("slDate");
 			this.oSelectCategory = this.getSelect("slCategory");
 			this.oSelectPriority = this.getSelect("slPriority");
-		this.oModel.setProperty("/Filter/text", "Filtered by None");
+			this.oModel.setProperty("/Filter/text", "Filtered by None");
 
 		},
-		onSelectionGrid: function(){
-			
-				this.oModel = new JSONModel();
+		onSelectionGrid: function() {
+
+			this.oModel = new JSONModel();
 			this.oModel.loadData("model/Person.json");
 			this.getView().setModel(this.oModel);
-			
+
 		},
 
 		onExit: function() {
@@ -53,6 +57,34 @@ sap.ui.define([
 			this.getPage().setHeaderExpanded(!this.getPage().getHeaderExpanded());
 		},
 
+		dialog: null,
+		onSelectButtonChange: function() {
+			if(!this.dialog){
+				this.dialog = new Dialog({
+				title: 'Suppliers',
+				type: 'Message',
+				content: new List({
+					items: {
+						path: '/RequestCollection',
+						template: new StandardListItem({
+							title: "{Name}",
+						    info: "{Status}"
+						})
+					}
+				}),
+				beginButton: new Button({
+					text: 'OK',
+					press: function() {
+						this.dialog.close();
+					}.bind(this)
+				})
+			});
+			this.getView().addDependent(this.dialog);
+
+			}
+			this.dialog.open();
+
+		},
 		onSelectChange: function() {
 			var aCurrentFilterValues = [];
 
@@ -62,6 +94,7 @@ sap.ui.define([
 
 			this.filterTable(aCurrentFilterValues);
 		},
+
 		filterTable: function(aCurrentFilterValues) {
 			this.getTableItems().filter(this.getFilters(aCurrentFilterValues));
 			this.updateFilterCriterias(this.getFilterCriteria(aCurrentFilterValues));
@@ -76,7 +109,7 @@ sap.ui.define([
 		addSnappedLabel: function() {
 			var oSnappedLabel = this.getSnappedLabel();
 			oSnappedLabel.attachBrowserEvent("click", this.onToggleHeader, this);
-			
+
 			//this.getPageTitle().addSnappedContent(oSnappedLabel);
 		},
 
@@ -142,8 +175,7 @@ sap.ui.define([
 
 			this.getSplitAppObj().toDetail(this.createId(sToPageId));
 		}
-		
-	 
+
 	});
 
 });

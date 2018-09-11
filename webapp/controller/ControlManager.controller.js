@@ -1,21 +1,35 @@
 sap.ui.define([
-	'sap/m/Button',
-	'sap/m/Dialog',
-	'sap/m/Text',
 	'jquery.sap.global',
 	'sap/ui/core/mvc/Controller',
 	'sap/ui/model/Filter',
-	'sap/ui/model/json/JSONModel'
-], function(Button, Dialog, Text,jQuery, Controller, Filter, JSONModel) {
+	'sap/ui/model/json/JSONModel',
+	'sap/m/Button',
+	'sap/m/Dialog',
+	'sap/m/Label',
+	'sap/m/MessageToast',
+	'sap/m/Text',
+	'sap/m/TextArea'
+], function(jQuery, Controller, Filter, JSONModel, Button, Dialog, Label, MessageToast, Text, TextArea) {
 	"use strict";
 
 	return Controller.extend("nextgen.nextgen.controller.ControlManager", {
 
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf nextgen.nextgen.view.master
-		 */
+		// navigation 2 methods
+		/*	getSplitAppObj: function() {
+				var result = this.byId("SplitContainer");
+				if (!result) {
+					jQuery.sap.log.info("SplitApp object can't be found");
+				}
+				return result;
+			}, 
+
+			onListItemPress: function(oEvent) {
+				var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
+
+				this.getSplitAppObj().toDetail(this.createId(sToPageId));
+
+			},*/
+		//supplier
 		onInit: function() {
 			this.oModel = new JSONModel();
 			this.oModel.loadData("model/Requests.json");
@@ -26,7 +40,13 @@ sap.ui.define([
 			this.oSelectCategory = this.getSelect("slCategory");
 			this.oSelectPriority = this.getSelect("slPriority");
 			this.oModel.setProperty("/Filter/text", "Filtered by None");
-			//	this.addSnappedLabel();
+
+		},
+		onSelectionGrid: function() {
+
+			this.oModel = new JSONModel();
+			this.oModel.loadData("model/Person.json");
+			this.getView().setModel(this.oModel);
 
 		},
 
@@ -37,16 +57,6 @@ sap.ui.define([
 		},
 		onToggleHeader: function() {
 			this.getPage().setHeaderExpanded(!this.getPage().getHeaderExpanded());
-		},
-
-		onSelectChange: function() {
-			var aCurrentFilterValues = [];
-
-			aCurrentFilterValues.push(this.getSelectedItemText(this.oSelectName));
-			aCurrentFilterValues.push(this.getSelectedItemText(this.oSelectCategory));
-			aCurrentFilterValues.push(this.getSelectedItemText(this.oSelectPriority));
-
-			this.filterTable(aCurrentFilterValues);
 		},
 		filterTable: function(aCurrentFilterValues) {
 			this.getTableItems().filter(this.getFilters(aCurrentFilterValues));
@@ -62,7 +72,8 @@ sap.ui.define([
 		addSnappedLabel: function() {
 			var oSnappedLabel = this.getSnappedLabel();
 			oSnappedLabel.attachBrowserEvent("click", this.onToggleHeader, this);
-			this.getPageTitle().addSnappedContent(oSnappedLabel);
+
+			//this.getPageTitle().addSnappedContent(oSnappedLabel);
 		},
 
 		removeSnappedLabel: function() {
@@ -114,24 +125,30 @@ sap.ui.define([
 				text: "{/Filter/text}"
 			});
 		},
-
-		onDashboardButtonPress: function(oEvent) {
-			var SplitContainer = this.byId("SplitContainer");
-			SplitContainer.to(this.createId("DashboardDetailpage"));
-
+		getSplitAppObj: function() {
+			var result = this.byId("SplitContainer");
+			if (!result) {
+				jQuery.sap.log.info("SplitApp object can't be found");
+			}
+			return result;
 		},
 
-		onMessageWarningDialogPress: function(oEvent) {
-			var dialog = new Dialog({
-				title: 'Warning',
+		onListItemPress: function(oEvent) {
+			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
+
+			this.getSplitAppObj().toDetail(this.createId(sToPageId));
+		},
+		onSubmitDialog: function() {
+				var dialog = new Dialog({
+				title: 'Success',
 				type: 'Message',
-				state: 'Warning',
+				state: 'Success',
 				content: new Text({
-					text: 'Ruling the world is a time-consuming task. You will not have a lot of spare time.'
+					text: 'The request is accepted successfully.'
 				}),
 				beginButton: new Button({
 					text: 'OK',
-					press: function() {
+					press: function () {
 						dialog.close();
 					}
 				}),
@@ -143,17 +160,32 @@ sap.ui.define([
 			dialog.open();
 		},
 
-		onMessageSuccessDialogPress: function(oEvent) {
+		onRejectDialog: function() {
 			var dialog = new Dialog({
-				title: 'Success',
+				title: 'Confirm',
 				type: 'Message',
-				state: 'Success',
-				content: new Text({
-					text: 'One of the keys to success is creating realistic goals that can be achieved in a reasonable amount of time.'
-				}),
+				content: [
+					new Label({
+						text: 'Are you sure you want to reject this request? Add some comments to explain the rejection',
+						labelFor: 'submitDialogTextarea'
+					}),
+					new TextArea('submitDialogTextarea', {
+						liveChange: function(oEvent) {
+							var sText = oEvent.getParameter('value');
+							var parent = oEvent.getSource().getParent();
+
+							parent.getBeginButton().setEnabled(sText.length > 0);
+						},
+						width: '100%',
+						placeholder: 'Add note (required)'
+					})
+				],
 				beginButton: new Button({
 					text: 'Submit',
+					enabled: false,
 					press: function() {
+						var sText = sap.ui.getCore().byId('submitDialogTextarea').getValue();
+						MessageToast.show('Note is: ' + sText);
 						dialog.close();
 					}
 				}),
