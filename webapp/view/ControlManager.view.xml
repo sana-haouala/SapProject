@@ -1,26 +1,29 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:vm="sap.ui.comp.variants"
-	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:semantic="sap.m.semantic" xmlns:fb="sap.ui.comp.filterbar" xmlns:ui="sap.ca.ui"
-	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="nextgen.nextgen.controller.ControlManager"
-	height="100%" displayBlock="true">
+	xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:semantic="sap.m.semantic" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:f="sap.f" xmlns:m="sap.m" xmlns:ui="sap.ca.ui" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="nextgen.nextgen.controller.ControlManager" height="100%" displayBlock="true">
 	<SplitContainer id="SplitContainer">
 		<masterPages>
 			<semantic:MasterPage title="Master Page " floatingFooter="true">
-				<semantic:subHeader>
+				<semantic:content>
+					<m:VBox alignItems="Center">
+						<f:Avatar src="https://jihenbouguerra.000webhostapp.com/wp-content/uploads/2018/07/21192554_2076665202554396_7643614267339705200_n.jpg"
+							displaySize="XL"></f:Avatar>
+						<m:Text text="Supplier Manger" class="sapUiSmallMarginTop"></m:Text>
+					</m:VBox>
+				</semantic:content>
+				<semantic:content>
 					<Bar id="headerBar">
 						<contentMiddle>
-							<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%"
-								search="onSearch"/>
+							<SearchField id="searchField" width="100%" search=""/>
 						</contentMiddle>
 					</Bar>
-				</semantic:subHeader>
+				</semantic:content>
 				<semantic:content>
 					<List headerText="Menu" mode="SingleSelectMaster" itemPress="onListItemPress">
 						<items>
-							<StandardListItem title="Request List" type="Active" custom:to="AddReq" activeIcon="sap-icon://list" icon="sap-icon://time-entry-request"/>
-							<StandardListItem title="Notifications" type="Active" custom:to="Notif" press="onSelectionChange" activeIcon="sap-icon://notification"
+							<StandardListItem title="All Requests" type="Active" custom:to="SuppMang" press="onSelectionChange" activeIcon="sap-icon://notification"
 								icon="sap-icon://notification-2"/>
-							<StandardListItem title="Dashboard" type="Active" custom:to="DashboardDetailpage" press="onSelectionChange" activeIcon="sap-icon://list"
-								icon="sap-icon://bbyd-dashboard"/>
 							<StandardListItem title="Log out" type="Active" press="onSelectionChange" icon="sap-icon://log"/>
 						</items>
 					</List>
@@ -29,20 +32,20 @@
 		</masterPages>
 		<detailPages id="DetailPagesContainer">
 			<semantic:DetailPage title="My Requests" floatingFooter="true">
+				<semantic:content></semantic:content>
+				<semantic:customFooterContent>
+					<OverflowToolbarButton text="Add" icon="sap-icon://add" press="onPress"/>
+				</semantic:customFooterContent>
+				<semantic:customShareMenuContent>
+					<Button text="CustomShareBtn1" icon="sap-icon://color-fill" press="onPress"/>
+					<Button text="CustomShareBtn2" icon="sap-icon://crop" press="onPress"/>
+				</semantic:customShareMenuContent>
+				<semantic:customFooterContent>
+					<OverflowToolbarButton icon="sap-icon://settings" text="Settings" press="onPress"/>
+				</semantic:customFooterContent>
+			</semantic:DetailPage>
+			<semantic:DetailPage id="SuppMang" title="All Requests">
 				<semantic:content>
-					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
-						<items>
-							<IconTabFilter icon="sap-icon://display" iconColor="Neutral" design="Horizontal">
-								<Text text="All requests"/>
-							</IconTabFilter>
-							<IconTabFilter icon="sap-icon://approvals" count="" iconColor="Positive" design="Horizontal">
-								<Text text="Approved requests"/>
-							</IconTabFilter>
-							<IconTabFilter icon="sap-icon://employee-rejections" iconColor="Negative" design="Horizontal">
-								<Text text="Rejected requests"/>
-							</IconTabFilter>
-						</items>
-					</IconTabBar>
 					<fb:FilterBar reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
 						<fb:filterItems>
 							<fb:FilterItem name="A" label="Date">
@@ -81,10 +84,8 @@
 							<Column minScreenWidth="Tablet" demandPopin="true">
 								<Text text="Priority"/>
 							</Column>
-							<Column id="column3">
-								<header>
+						<Column id="column3">
 									<Text text="Actions" id="text16"/>
-								</header>
 							</Column>
 						</columns>
 						<items>
@@ -94,8 +95,8 @@
 									<Text text="{Category}"/>
 									<Text text="{Priority}"/>
 									<VBox>
-										<Button text="Accept" width="100px" id="AcceptBt" type="Accept" press="onMessageSuccessDialogPress" class="sapUiSmallMarginBottom"/>
-										<Button text="Reject" width="100px" id="RejectBt" type="Reject" press="onMessageWarningDialogPress" class="sapUiSmallMarginBottom"/>
+										<Button icon="sap-icon://accept" width="50px" id="AcceptBt" type="Accept" press="onSubmitDialog" class="sapUiSmallMarginBottom"/>
+										<Button icon="sap-icon://decline" width="50px" id="RejectBt" type="Reject" press="onRejectDialog" class="sapUiSmallMarginBottom"/>
 									</VBox>
 								</cells>
 							</ColumnListItem>
@@ -113,14 +114,29 @@
 					<OverflowToolbarButton icon="sap-icon://settings" text="Settings" press="onPress"/>
 				</semantic:customFooterContent>
 			</semantic:DetailPage>
-			<semantic:DetailPage id="AddReq" title="Add Request">
-				<semantic:content/>
-			</semantic:DetailPage>
-			<semantic:DetailPage id="Notif" title="Notifications">
-				<semantic:content/>
-			</semantic:DetailPage>
-			<semantic:DetailPage id="DashboardDetailpage" title="Your dashboard">
-				<semantic:content/>
+			<semantic:DetailPage id="Notif" title="All Suppliers">
+				<semantic:content>
+					<l:VerticalLayout class="sapUiContentPadding" width="100%">
+						<l:content>
+							<List headerText="Suplliers" items="{/EntryCollection}">
+								<FeedListItem sender="{Author}" icon="{AuthorPicUrl}" senderPress="onPress" iconPress="onPress" iconDensityAware="false" info="{Type}"
+									timestamp="{Date}" text="{Text}" convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
+									<FeedListItemAction text="{Text}" icon="{Icon}" key="{Key}" press="onActionPressed"/>
+								</FeedListItem>
+							</List>
+						</l:content>
+					</l:VerticalLayout>
+				</semantic:content>
+				<semantic:customFooterContent>
+					<OverflowToolbarButton text="Add" icon="sap-icon://add" press="onPress"/>
+				</semantic:customFooterContent>
+				<semantic:customShareMenuContent>
+					<Button text="CustomShareBtn1" icon="sap-icon://color-fill" press="onPress"/>
+					<Button text="CustomShareBtn2" icon="sap-icon://crop" press="onPress"/>
+				</semantic:customShareMenuContent>
+				<semantic:customFooterContent>
+					<OverflowToolbarButton icon="sap-icon://settings" text="Settings" press="onPress"/>
+				</semantic:customFooterContent>
 			</semantic:DetailPage>
 		</detailPages>
 	</SplitContainer>

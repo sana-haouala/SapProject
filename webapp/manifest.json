@@ -39,7 +39,10 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_hcb", "sap_belize"]
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -78,9 +81,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -92,39 +97,58 @@
 				"controlId": "idAppControl",
 				"transition": "slide"
 			},
-			"routes": [{
-				"name": "RouteAcceuil",
-				"pattern": "RouteAcceuil",
-				"target": ["TargetAcceuil"]
-			}, {
-				"name": "Requester",
-				"pattern": "Requester",
-				"target": ["Requester"]
-			}, {
-				"name": "ListTest",
-				"pattern": "ListTest",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["ListTest"]
-			}, {
-				"name": "Master",
-				"pattern": "Master",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["Master"]
-			}, {
-				"name": "ControlManager",
-				"pattern": "ControlManager",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["ControlManager"]
-			}, {
-				"name": "MasterSupp",
-				"pattern": "MasterSupp",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["MasterSupp"]
-			}],
+			"routes": [
+				{
+					"name": "RouteAcceuil",
+					"pattern": "RouteAcceuil",
+					"target": [
+						"TargetAcceuil"
+					]
+				},
+				{
+					"name": "Requester",
+					"pattern": "Requester",
+					"target": [
+						"Requester"
+					]
+				},
+				{
+					"name": "ListTest",
+					"pattern": "ListTest",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"ListTest"
+					]
+				},
+				{
+					"name": "Master",
+					"pattern": "Master",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Master"
+					]
+				},
+				{
+					"name": "ControlManager",
+					"pattern": "ControlManager",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"ControlManager"
+					]
+				},
+				{
+					"name": "MasterSupp",
+					"pattern": "MasterSupp",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"MasterSupp"
+					]
+				}
+			],
 			"targets": {
 				"Requester": {
 					"viewType": "XML",
@@ -187,5 +211,9 @@
 				}
 			}
 		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
 	}
 }
